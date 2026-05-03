@@ -1,0 +1,32 @@
+services:
+  jenkins_clean:
+    image: jenkins/jenkins:2.555.1-lts
+    container_name: jenkins-clean-server
+    ports:
+      - "8081:8080"
+      - "50001:50000"
+    volumes:
+      - ./workdir/clean_master:/var/jenkins_home
+    networks:
+      - jenkins-network
+
+  jenkins:
+    image: jenkins:lts-custom  # Tags the image with this name
+    build:
+      context: .
+      args: 
+        - JENKIS_TAG=2.555.1-lts
+    container_name: jenkins-server
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - ./workdir/master:/var/jenkins_home
+      - ./jenkins-init.yaml:/var/jenkins_home/jenkins.yaml
+    environment:
+      - JENKINS_ADMIN_PASSWORD=admin
+    networks:
+      - jenkins-network
+
+networks:
+  jenkins-network:

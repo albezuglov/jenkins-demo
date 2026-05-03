@@ -1,0 +1,20 @@
+# Operating System
+.DS_Store
+Thumbs.db
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+
+# VS Code
+.vscode/
+
+# Ignore temporary archives
+*.gz
+*.zip
+*.tar.*
+trash
+
+workdir
