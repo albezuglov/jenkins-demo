@@ -11,7 +11,7 @@ services:
       - jenkins-network
 
   jenkins:
-    image: jenkins:lts-custom  # Tags the image with this name
+    image: jenkins:lts-custom
     build:
       context: .
       args: 
